@@ -32,7 +32,7 @@ Menu, Tray, Icon, shell32.dll, 16 ;this changes the icon into a little laptop th
 #IfWinActive 
 
 ;F1 holds the "BACK" script.
-F1::
+^NUMPAD1::
 if WinActive("ahk_class MozillaWindowClass")
 	Send ^+{tab} ;CTRL SHIFT TAB is the shortcut for "go to previous tab"
 if WinActive("ahk_class Chrome_WidgetWin_1")
@@ -46,7 +46,7 @@ if WinActive("ahk_exe explorer.exe")
 Return
 
 
-F2::
+^F2::
 IfWinNotExist, ahk_class CabinetWClass
 	Run, explorer.exe
 GroupAdd, taranexplorers, ahk_class CabinetWClass ;You have to make a new group for each application, don't use the same one for all of them!
@@ -57,7 +57,7 @@ else
 Return
 
 
-F3::
+^F3::
 ;In unknown circumstances, if chrome is opened with this script, it becomes a blank screen, and cannot open unless you restart your computer.
 ;you can comment out the next two lines if that happens to you...
 IfWinNotExist, ahk_class Chrome_WidgetWin_1
@@ -70,7 +70,7 @@ Return
 
 
 
-F4::
+^F4::
 Process, Exist, WINWORD.EXE
 	If errorLevel = 0
 		Run, WINWORD.EXE
@@ -84,7 +84,7 @@ Process, Exist, WINWORD.EXE
 	}
 Return
 
-F5::
+^F5::
 IfWinNotExist, ahk_class Premiere Pro
 	Run, Adobe Premiere Pro.exe
 WinActivate ahk_class Premiere Pro
@@ -96,11 +96,15 @@ Return
 
 
 
+
+^r:: Reload
+
+
 ;EXTRA STUFF YOU CAN DELETE
 
 ;The optional script below allows you to use the TILDE to go DOWN one folder level in explorer
 #IfWinActive ahk_exe explorer.exe
-`::
+~::
 Send !{up}
 Return
 

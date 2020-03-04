@@ -1,7 +1,7 @@
 ﻿; global savedCLASS = "ahk_class Notepad++"
 ; global savedEXE = "notepad++.exe" ;BEFORE the #include is apparently the only place these can go.
 
-#include C:\AHK\2nd-keyboard\point_to_gui.ahk
+#include point_to_gui.ahk
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.

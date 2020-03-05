@@ -2,6 +2,7 @@
 ; global savedEXE = "notepad++.exe" ;BEFORE the #include is apparently the only place these can go.
 
 #include point_to_gui.ahk
+#include %A_ScriptDir%\Acc.ahk
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.

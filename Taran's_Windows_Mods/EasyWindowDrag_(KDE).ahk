@@ -47,7 +47,7 @@ return
 #ifWinNotActive ahk_exe Adobe Premiere Pro.exe ;because I use xbutton1 and xbutton2 for different things in Premiere. It's always full screen, so it doesn't matter. You can comment this entire line out.
 
 
-Xbutton2::
+^+F7::
 WinRestore, A
 ;winrestore will take your window OUT of fullscreen mode and into... "restore down" mode. So you can remove this if you don't like that. https://autohotkey.com/board/topic/53403-solved-pressing-the-restore-down-button-on-windows/
 
@@ -72,8 +72,7 @@ If KDE_Win
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %KDE_id%
 Loop
 {
-    ;GetKeyState,KDE_Button,F20,P ; Break if button has been released.
-    GetKeyState,KDE_Button,%thekey%,P ; Break if button has been released.
+    GetKeyState,KDE_Button,F7,P ; Break if button has been released.
     If KDE_Button = U
         break
     MouseGetPos,KDE_X2,KDE_Y2 ; Get the current mouse position.
@@ -87,7 +86,7 @@ return
 
 ;------------------------
 
-Xbutton1::
+^+F8::
 WinRestore, A
 ;winrestore will take your window OUT of fullscreen mode and into... "restore down" mode. So you can remove this if you don't like that. https://autohotkey.com/board/topic/53403-solved-pressing-the-restore-down-button-on-windows/
 
@@ -123,7 +122,7 @@ Else
     KDE_WinUp := -1
 Loop
 {
-    GetKeyState,KDE_Button,Xbutton1,P ; Break if button has been released.
+    GetKeyState,KDE_Button,F8,P ; Break if button has been released.
     If KDE_Button = U
         break
     MouseGetPos,KDE_X2,KDE_Y2 ; Get the current mouse position.

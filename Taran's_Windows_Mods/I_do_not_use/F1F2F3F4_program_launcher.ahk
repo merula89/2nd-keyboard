@@ -32,7 +32,7 @@ Menu, Tray, Icon, shell32.dll, 16 ;this changes the icon into a little laptop th
 #IfWinActive 
 
 ;F1 holds the "BACK" script.
-^NUMPAD1::
+^numpad1::
 if WinActive("ahk_class MozillaWindowClass")
 	Send ^+{tab} ;CTRL SHIFT TAB is the shortcut for "go to previous tab"
 if WinActive("ahk_class Chrome_WidgetWin_1")
@@ -42,11 +42,11 @@ if WinActive("ahk_class Notepad++")
 if WinActive("ahk_exe Adobe Premiere Pro.exe")
 	Send {F12} ;F12 is my shortcut in premiere for "go back"(in bins)
 if WinActive("ahk_exe explorer.exe")
-	Send !{left} ;ALT LEFT is the explorer shortcut to go "back" or "down" one folder level.
+	Send !{left} ;ALT LEFT is the explorer shortcut to go "back" or "up" one folder level.
 Return
 
 
-^F2::
+^numpad2::
 IfWinNotExist, ahk_class CabinetWClass
 	Run, explorer.exe
 GroupAdd, taranexplorers, ahk_class CabinetWClass ;You have to make a new group for each application, don't use the same one for all of them!
@@ -57,20 +57,28 @@ else
 Return
 
 
-^F3::
-;In unknown circumstances, if chrome is opened with this script, it becomes a blank screen, and cannot open unless you restart your computer.
+^numpad3::
 ;you can comment out the next two lines if that happens to you...
-IfWinNotExist, ahk_class Chrome_WidgetWin_1
+IfWinNotExist, ahk_class MozillaWindowClass
 	Run, chrome.exe
-if WinActive("ahk_class Chrome_WidgetWin_1")
-	Send ^{tab}
+if WinActive("ahk_class MozillaWindowClass")
+	Send ^{PgDn}
 else
-	WinActivate ahk_class Chrome_WidgetWin_1
+	WinActivate ahk_class MozillaWindowClass
+Return
+
+^numpad4::
+IfWinNotExist, ahk_exe slack.exe
+	Run, %USERPROFILE%\AppData\Local\slack\Update.exe --processStart "slack.exe", , Normal
+if WinActive("ahk_exe slack.exe")
+	Send !{down}
+else
+	WinActivate ahk_exe slack.exe
 Return
 
 
 
-^F4::
+^numpad5::
 Process, Exist, WINWORD.EXE
 	If errorLevel = 0
 		Run, WINWORD.EXE
@@ -84,11 +92,45 @@ Process, Exist, WINWORD.EXE
 	}
 Return
 
-^F5::
-IfWinNotExist, ahk_class Premiere Pro
-	Run, Adobe Premiere Pro.exe
-WinActivate ahk_class Premiere Pro
+
+
+^numpad6::
+Process, Exist, DesignCockpit43.exe
+	If errorLevel = 0
+		Run, DesignCockpit43.exe
+	else
+	{
+	GroupAdd, designCockpits, ahk_exe DesignCockpit43.exe
+	if WinActive("ahk_exe DesignCockpit43.exe")
+		GroupActivate, designCockpits, r
+	else
+		WinActivate ahk_exe DesignCockpit43.exe
+	}
 Return
+
+^+numpad6::
+Process, Exist, DesignCockpit43.exe
+	If errorLevel = 0
+		Run, DesignCockpit43.exe
+	else
+	{
+	GroupAdd, designCockpits, ahk_exe DesignCockpit43.exe
+	if WinActive("ahk_exe DesignCockpit43.exe")
+		GroupActivate, designCockpits, r
+	else
+		WinActivate ahk_exe DesignCockpit43.exe
+	}
+Return
+
+
+; I really dont need those shortcuts below
+
+
+;^numpad6::
+;IfWinNotExist, ahk_class Premiere Pro
+;	Run, Adobe Premiere Pro.exe
+;WinActivate ahk_class Premiere Pro
+;Return
 
 ;If you want to only launch an application when holding the SHIFT key, you can program it this way:
 ;F5::WinActivate ahk_class Premiere Pro
